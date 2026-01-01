@@ -1,0 +1,31 @@
+# Deep Learning
+torch
+torchvision
+timm
+huggingface_hub
+
+# Data Processing
+pandas
+numpy
+scikit-learn
+pyyaml
+
+# Image Processing
+albumentations
+opencv-python-headless
+pillow
+
+# Visualization
+matplotlib
+seaborn
+
+# Progress Bar
+tqdm
+
+# Web App
+streamlit
+altair
+
+# Model Export
+onnx
+onnxruntime

@@ -1,0 +1,94 @@
+# Global
+project_name: "pad-ufes20-backbone-benchmark"
+seed: 42
+device: "cuda"          # "cuda" or "cpu"
+num_workers: 4
+pin_memory: true
+amp: true               # mixed precision (recommended on GPU)
+
+# Data
+data:
+  img_dir: "data/images"        # PAD-UFES-20 images data
+  csv_path: "data/metadata.csv" # PAD-UFES-20 metadata
+  splits_path: "data/splits.json"  # Default for basic workflow (auto-switched for CV)
+
+# Labels (6-class)
+labels:
+  # Keep this mapping stable across runs
+  label2id:
+    ACK: 0
+    BCC: 1
+    MEL: 2
+    NEV: 3
+    SCC: 4
+    SEK: 5
+  id2label:
+    "0": ACK
+    "1": BCC
+    "2": MEL
+    "3": NEV
+    "4": SCC
+    "5": SEK
+
+# Split generation defaults (used by scripts/make_splits.py)
+split:
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  # Minimum number of MEL images in val/test to keep evaluation meaningful.
+  # If too strict for your download, reduce these.
+  min_mel_val: 5
+  min_mel_test: 5
+  trials: 400            # number of random attempts if needed
+  seed_start: 0          # seeds tried: seed_start .. seed_start+trials-1
+
+# Training
+train:
+  img_size: 224
+  batch_size: 32
+  weighted_sampler: true  # oversample minority classes per epoch
+  # Two-stage fine-tuning:
+  stage1:
+    epochs: 8            # train head only (freeze backbone)
+    lr: 0.001
+  stage2:
+    epochs: 25           # unfreeze all and fine-tune
+    lr: 0.0003
+  weight_decay: 0.01
+  optimizer: "adamw"    
+  scheduler: "cosine"
+  warmup_epochs: 3
+  grad_clip_norm: 1.0
+  early_stopping:
+    monitor: "macro_f1"
+    mode: "max"
+    patience: 8
+
+loss:
+  name: "cross_entropy"
+  class_weights: false    # handle imbalance
+  label_smoothing: 0.0
+
+# Augmentations (implement in src/dataset.py)
+augment:
+  train:
+    random_resized_crop:
+      scale_min: 0.80
+      scale_max: 1.00
+    rotate_deg: 15
+    hflip_p: 0.5
+    brightness_contrast: 0.20
+    gamma: 0.15
+    gaussian_noise_p: 0.15
+    blur_p: 0.10
+  val:
+    center_crop: false   # keep false; use resize only
+
+# Evaluation / reporting
+eval:
+  metrics:
+    - macro_f1
+    - balanced_accuracy
+    - per_class_recall
+    - confusion_matrix
+  save_predictions: true

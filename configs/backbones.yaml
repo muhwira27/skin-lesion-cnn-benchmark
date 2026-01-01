@@ -1,0 +1,23 @@
+# 10 backbones (fixed list for this project)
+# Note: some are from torchvision, others from timm.
+backbones:
+  - name: "resnet50"
+    source: "torchvision"
+  - name: "densenet121"
+    source: "torchvision"
+  - name: "efficientnet_b0"
+    source: "timm"
+  - name: "convnext_tiny"
+    source: "timm"
+  - name: "tf_efficientnetv2_s"
+    source: "timm"
+  - name: "seresnet50"
+    source: "timm"
+  - name: "vit_small_patch16_224"
+    source: "timm"
+  - name: "regnety_032"
+    source: "timm"
+  - name: "mobilenet_v3_large"
+    source: "torchvision"
+  - name: "shufflenet_v2_x1_0"
+    source: "torchvision"
