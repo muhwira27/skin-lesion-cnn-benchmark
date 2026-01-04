@@ -285,7 +285,9 @@ def main():
         model_options = [f"{v['name']} (F1: {v['f1']:.3f})" for k, v in sorted_models]
         model_keys = [k for k, v in sorted_models]
         
-        selected_idx = st.selectbox("Select Model", range(len(model_options)), format_func=lambda i: model_options[i])
+        # Find DenseNet index (default model)
+        default_idx = next((i for i, k in enumerate(model_keys) if k == "densenet121"), 0)
+        selected_idx = st.selectbox("Select Model", range(len(model_options)), index=default_idx, format_func=lambda i: model_options[i])
         selected_key = model_keys[selected_idx]
         selected_info = AVAILABLE_MODELS[selected_key]
         
