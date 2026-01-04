@@ -41,6 +41,12 @@ Key features include:
 
 📈 **Transformer Performance**: ViT-Small ranks #2, demonstrating that Vision Transformers can compete with CNNs even on smaller medical datasets when properly fine-tuned.
 
+### 💡 Model Selection Note
+
+The demo defaults to **DenseNet-121** rather than ShuffleNet V2 (top benchmark performer). During real-world testing with external images, ShuffleNet showed occasional misclassifications between similar classes. DenseNet-121 demonstrated more robust generalization across diverse image sources.
+
+> This highlights an important insight: **cross-validation metrics alone may not fully capture real-world performance**, especially for lightweight models with limited capacity.
+
 ---
 
 ## 📸 Screenshots
