@@ -505,6 +505,11 @@ def main():
             st.metric(label="🪶 Best Lightweight", value="ShuffleNet V2", delta="Only 1.26M params!")
         
         st.info("🔥 **Surprising Finding**: ShuffleNet V2 (ultra-lightweight) achieves the best performance!")
+        
+        st.info("""
+💡 **Default Model:** DenseNet-121 — more robust on real-world images than ShuffleNet V2 (top CV performer).  
+*Benchmark metrics may not fully reflect generalization, especially for lightweight models.*
+""")
     
     # Tab 3: About
     with tab3:
