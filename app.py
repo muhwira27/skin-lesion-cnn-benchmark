@@ -63,16 +63,16 @@ st.markdown("""
 # Constants
 HF_REPO_ID = "muhwira27/skin-lesion-models"
 AVAILABLE_MODELS = {
-    "shufflenet_v2_x1_0": {"name": "ShuffleNet V2", "f1": 0.648, "params": "1.26M", "file": "shufflenet_v2_x1_0_best.ckpt"},
-    "densenet121": {"name": "DenseNet-121", "f1": 0.637, "params": "6.96M", "file": "densenet121_best.ckpt"},
-    "vit_small_patch16_224": {"name": "ViT-Small", "f1": 0.624, "params": "21.67M", "file": "vit_small_patch16_224_best.ckpt"},
-    "mobilenet_v3_large": {"name": "MobileNetV3", "f1": 0.631, "params": "4.21M", "file": "mobilenet_v3_large_best.ckpt"},
-    "resnet50": {"name": "ResNet-50", "f1": 0.604, "params": "23.52M", "file": "resnet50_best.ckpt"},
-    "seresnet50": {"name": "SE-ResNet50", "f1": 0.617, "params": "26.05M", "file": "seresnet50_best.ckpt"},
-    "tf_efficientnetv2_s": {"name": "EfficientNetV2-S", "f1": 0.615, "params": "20.19M", "file": "tf_efficientnetv2_s_best.ckpt"},
-    "regnety_032": {"name": "RegNetY-032", "f1": 0.608, "params": "17.93M", "file": "regnety_032_best.ckpt"},
-    "convnext_tiny": {"name": "ConvNeXt Tiny", "f1": 0.601, "params": "27.82M", "file": "convnext_tiny_best.ckpt"},
-    "efficientnet_b0": {"name": "EfficientNet-B0", "f1": 0.613, "params": "4.02M", "file": "efficientnet_b0_best.ckpt"},
+    "shufflenet_v2_x1_0": {"name": "ShuffleNet V2", "f1": 0.613, "params": "1.26M", "file": "shufflenet_v2_x1_0_best.ckpt"},
+    "densenet121": {"name": "DenseNet-121", "f1": 0.604, "params": "6.96M", "file": "densenet121_best.ckpt"},
+    "vit_small_patch16_224": {"name": "ViT-Small", "f1": 0.607, "params": "21.67M", "file": "vit_small_patch16_224_best.ckpt"},
+    "mobilenet_v3_large": {"name": "MobileNetV3", "f1": 0.569, "params": "4.21M", "file": "mobilenet_v3_large_best.ckpt"},
+    "resnet50": {"name": "ResNet-50", "f1": 0.579, "params": "23.52M", "file": "resnet50_best.ckpt"},
+    "seresnet50": {"name": "SE-ResNet50", "f1": 0.594, "params": "26.05M", "file": "seresnet50_best.ckpt"},
+    "tf_efficientnetv2_s": {"name": "EfficientNetV2-S", "f1": 0.582, "params": "20.19M", "file": "tf_efficientnetv2_s_best.ckpt"},
+    "regnety_032": {"name": "RegNetY-032", "f1": 0.576, "params": "17.93M", "file": "regnety_032_best.ckpt"},
+    "convnext_tiny": {"name": "ConvNeXt Tiny", "f1": 0.539, "params": "27.82M", "file": "convnext_tiny_best.ckpt"},
+    "efficientnet_b0": {"name": "EfficientNet-B0", "f1": 0.504, "params": "4.02M", "file": "efficientnet_b0_best.ckpt"},
 }
 
 # Class descriptions for medical context (original format)
@@ -479,7 +479,7 @@ def main():
                 "Rank": i + 1,
                 "Model": v["name"],
                 "Macro-F1": v["f1"],
-                "Std Dev": [0.026, 0.027, 0.032, 0.060, 0.022, 0.035, 0.025, 0.043, 0.072, 0.089][i],
+                "Std Dev": [0.026, 0.027, 0.032, 0.035, 0.025, 0.022, 0.043, 0.060, 0.072, 0.089][i],
                 "Params": v["params"]
             })
         df = pd.DataFrame(data)
