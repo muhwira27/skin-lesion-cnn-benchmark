@@ -24,8 +24,7 @@ seaborn
 tqdm
 
 # Web App
-streamlit
-altair
+streamlit>=1.32.0
 
 # Model Export
 onnx
